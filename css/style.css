@@ -48,6 +48,40 @@ h1, h2, h3, h4 {
 .bg-dark     { background: #0a0a0a; }
 .bg-black    { background: #000; }
 
+/* ---------- GLOW ANIMATION ---------- */
+@supports (background: conic-gradient(from 0deg)) {
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .glow {
+    position: relative;
+    border-radius: 16px;
+    z-index: 0;
+  }
+
+  .glow::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--angle), #ff1a1a, #ff7a00, #ffd000, #ff1a1a);
+    z-index: -1;
+    animation: glow-spin 4s linear infinite;
+  }
+
+  .glow-intense::before {
+    inset: -4px;
+    box-shadow: 0 0 20px rgba(255, 26, 26, 0.8), inset 0 0 20px rgba(255, 26, 26, 0.3);
+  }
+
+  @keyframes glow-spin {
+    to { --angle: 360deg; }
+  }
+}
+
 /* ---------- COUNTDOWN BAR ---------- */
 .countdown-bar {
   background: #C80000;
@@ -274,11 +308,7 @@ h1, h2, h3, h4 {
   padding: 20px 16px;
   text-align: center;
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-}
-
-.bonus-card.dark {
-  background: #0a0a0a;
-  border: 1px solid #333;
+  position: relative;
 }
 
 .bonus-num {
@@ -292,11 +322,6 @@ h1, h2, h3, h4 {
   padding: 3px 10px;
   border-radius: 20px;
   margin-bottom: 10px;
-}
-
-.bonus-card.dark .bonus-num {
-  background: #1a1a1a;
-  color: #E01010;
 }
 
 .bonus-card h3 {
@@ -317,8 +342,6 @@ h1, h2, h3, h4 {
   color: rgba(255,255,255,0.88);
   line-height: 1.6;
 }
-
-.bonus-card.dark .bonus-desc { color: #ccc; }
 
 /* ---------- ALERT BLOCK ---------- */
 .alert-block {
@@ -387,6 +410,25 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
+.offer-card {
+  background: radial-gradient(circle at center, #1a0a0a 0%, #0d0000 70%, #000 100%);
+  border-radius: 16px;
+  padding: 28px 20px;
+  margin: 0 -20px 28px;
+  padding-left: calc(20px);
+  padding-right: calc(20px);
+  position: relative;
+  z-index: 0;
+}
+
+.offer-card.glow {
+  background: radial-gradient(circle at center, #1a0a0a 0%, #0d0000 70%, #000 100%);
+}
+
+.offer-card.glow::before {
+  box-shadow: 0 0 30px rgba(224, 16, 16, 0.9), 0 0 60px rgba(224, 16, 16, 0.5), inset 0 0 30px rgba(224, 16, 16, 0.2);
+}
+
 .offer-headline {
   font-size: clamp(1.3rem, 5vw, 1.8rem);
   font-weight: 900;
@@ -409,10 +451,10 @@ h1, h2, h3, h4 {
 }
 
 .offer-img {
-  margin: 0 auto 24px;
-  max-width: 340px;
-  background: #000;
-  border-radius: 12px;
+  margin: 0 auto 20px;
+  max-width: 280px;
+  background: transparent;
+  border-radius: 8px;
 }
 
 .price-block {
