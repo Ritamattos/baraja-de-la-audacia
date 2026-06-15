@@ -3,6 +3,13 @@
    Mobile-first, max-width 600px column on desktop
    ============================================================ */
 
+/* ---------- Custom Properties ---------- */
+@property --neon-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -383,13 +390,20 @@ h1, h2, h3, h4 {
 .neon-card::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(#ff2d2d,#ff7a00,#ffd000,#ff7a00,#ff2d2d,#ff7a00,#ffd000,#ff7a00,#ff2d2d);
-  animation: spin 4.5s linear infinite;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--neon-angle),
+    #5a0000 0deg,
+    #ff2d2d 60deg,
+    #ffd000 90deg,
+    #ffffff 100deg,
+    #ffd000 110deg,
+    #ff2d2d 140deg,
+    #5a0000 200deg,
+    #5a0000 360deg
+  );
+  animation: neon-travel 4s linear infinite;
   z-index: 0;
 }
 
@@ -399,6 +413,10 @@ h1, h2, h3, h4 {
   border-radius: 17px;
   background: radial-gradient(circle at 50% 0%, #2a0000 0%, #120000 60%, #0a0a0a 100%);
   padding: 24px;
+}
+
+@keyframes neon-travel {
+  to { --neon-angle: 360deg; }
 }
 
 /* ---------- BONUS CARDS (simple, no neon) ---------- */
@@ -411,9 +429,6 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 .offer-headline {
   font-size: clamp(1.3rem, 5vw, 1.8rem);
