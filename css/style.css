@@ -376,7 +376,7 @@ h1, h2, h3, h4 {
   padding: 3px;
   overflow: hidden;
   isolation: isolate;
-  box-shadow: 0 0 28px rgba(255,40,40,.45);
+  box-shadow: 0 0 22px rgba(255,40,40,.40);
   margin: 0 0 28px;
 }
 
@@ -388,8 +388,8 @@ h1, h2, h3, h4 {
   width: 200%;
   height: 200%;
   transform: translate(-50%, -50%);
-  background: conic-gradient(#ff1a1a, #ff7a00, #ffd000, #ff2d2d, #ff1a1a);
-  animation: spin 4s linear infinite;
+  background: conic-gradient(#ff2d2d,#ff7a00,#ffd000,#ff7a00,#ff2d2d,#ff7a00,#ffd000,#ff7a00,#ff2d2d);
+  animation: spin 4.5s linear infinite;
   z-index: 0;
 }
 
@@ -401,24 +401,14 @@ h1, h2, h3, h4 {
   padding: 24px;
 }
 
-/* ---------- NEON CARD BONUS ---------- */
-.neon-card.bonus-neon {
-  border-radius: 12px;
-  padding: 2px;
-  box-shadow: 0 0 12px rgba(255,40,40,.28);
-  margin: 0;
-}
-
-.neon-card.bonus-neon::before {
-  animation: spin 6s linear infinite;
-  background: conic-gradient(#ff3a3a, #ff8a3a, #ffb500, #ff4a4a, #ff3a3a);
-}
-
-.neon-inner.bonus-inner {
-  border-radius: 10px;
+/* ---------- BONUS CARDS (simple, no neon) ---------- */
+.bonus-card {
   background: #C80000;
+  border-radius: 12px;
   padding: 20px 16px;
   text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  position: relative;
 }
 
 @keyframes spin {
